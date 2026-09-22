@@ -5,10 +5,11 @@
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;1,9..144,400;1,9..144,500&family=Hanken+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
 :root{
-  --bone:#F5F1E8; --bone-2:#EFEADF; --paper:#FBF8F1; --card:#FFFFFF;
-  --ink:#1C1917; --ink-2:#4A443C; --muted:#7C756A; --faint:#A69E90;
-  --line:#E6DFD1; --line-2:#D8CFBC;
-  --accent:#2C5F54; --accent-dark:#20463D; --accent-lt:#93B7AE; --accent-soft:#E9F0ED;
+  --bone:#FFFFFF; --bone-2:#EAF1FB; --paper:#F5F8FD; --card:#FFFFFF;
+  --ink:#0E1D38; --ink-2:#3A4767; --muted:#697697; --faint:#A0AAC4;
+  --line:#E6ECF6; --line-2:#D6E0F0;
+  --accent:#015BD5; --accent-dark:#0146A6; --accent-lt:#8FB6FF; --accent-soft:#EAF1FF;
+  --pink:#F52455; --pink-dark:#D91745;
   --serif:"Fraunces",Georgia,"Times New Roman",serif;
   --sans:"Hanken Grotesk",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
   --r:14px; --r-lg:20px; --r-xl:26px; --r-2xl:32px;
@@ -45,8 +46,10 @@ hr.rule{border:0;border-top:1px solid var(--line);margin:0}
 
 /* buttons */
 .btn{position:relative;display:inline-flex;align-items:center;justify-content:center;gap:9px;font-family:var(--sans);font-weight:600;font-size:15px;letter-spacing:.005em;padding:15px 30px;border-radius:999px;border:1px solid transparent;cursor:pointer;transition:background .25s,color .25s,border-color .25s,transform .3s var(--ease);white-space:nowrap}
-.btn-primary,.btn-blue{background:var(--accent);color:var(--paper)}
-.btn-primary:hover,.btn-blue:hover{background:var(--accent-dark);transform:translateY(-1px)}
+.btn-primary{background:var(--pink);color:#fff}
+.btn-primary:hover{background:var(--pink-dark);transform:translateY(-1px)}
+.btn-blue{background:var(--accent);color:#fff}
+.btn-blue:hover{background:var(--accent-dark);transform:translateY(-1px)}
 .btn-line{background:transparent;color:var(--ink);border-color:var(--line-2)}
 .btn-line:hover{border-color:var(--ink)}
 .btn-white{background:var(--ink);color:var(--paper)}
@@ -62,7 +65,7 @@ html.js .reveal.in{opacity:1;transform:none}
 header.nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:50;background:color-mix(in srgb,var(--bone) 86%,transparent);backdrop-filter:saturate(120%) blur(12px);border-bottom:1px solid transparent;transition:border-color .3s,background .3s}
 header.nav.scrolled{border-bottom:1px solid var(--line)}
 .nav-in{display:flex;align-items:center;justify-content:space-between;gap:14px;height:74px}
-.logo{height:30px;width:auto;filter:brightness(0) saturate(0);opacity:.86}
+.logo{height:31px;width:auto}
 .nav-links{display:flex;gap:34px;align-items:center}
 .nav-links a{font-size:14px;font-weight:500;color:var(--ink-2);transition:color .2s}
 .nav-links a:hover{color:var(--accent)}
@@ -271,8 +274,8 @@ details.faq p{padding:0 0 24px;color:var(--muted);font-size:15px;line-height:1.6
 .final-band .eyebrow{color:var(--accent)!important;opacity:1!important}
 .final-band h2{color:var(--ink);font-size:clamp(28px,4.4vw,50px);font-weight:400}
 .final-band p{color:var(--ink-2);max-width:56ch;margin:18px auto 0;font-size:16.5px}
-.final-band .btn{margin-top:30px;background:var(--accent);color:var(--paper)}
-.final-band .btn:hover{background:var(--accent-dark)}
+.final-band .btn{margin-top:30px;background:var(--pink);color:#fff}
+.final-band .btn:hover{background:var(--pink-dark)}
 
 /* footer */
 footer{background:var(--ink);color:var(--paper);padding-block:60px 34px}
@@ -362,6 +365,7 @@ footer .hl{color:var(--accent-lt)}
       </div>
 
       <div class="form-card" id="book">
+        
         <div class="form-head">
           <div class="tag">One-Week Assessment</div>
           <h3>Start Your <span class="hl">One Week Free</span> Assessment</h3>
@@ -611,6 +615,7 @@ footer .hl{color:var(--accent-lt)}
       <div class="reel hasvid reveal" style="--d:1"><video src="vid2.mp4" controls playsinline preload="metadata"></video><div class="cap"><span class="rn">Reel 02</span><b>Leash Walking Progress</b><span>Structured at-home training and daily practice.</span></div></div>
       <div class="reel hasvid reveal" style="--d:2"><video src="vid3.mp4" controls playsinline preload="metadata"></video><div class="cap"><span class="rn">Reel 03</span><b>Better Everyday Behaviour</b><span>Improved cues, consistency and communication.</span></div></div>
       <div class="reel deal reveal" style="--d:3">
+        
         <span class="badge">Your dog next</span>
         <h3>Want progress like this?</h3>
         <p>Start with a free 7-day at-home assessment.</p>
@@ -645,6 +650,7 @@ footer .hl{color:var(--accent-lt)}
 <section>
   <div class="wrap">
     <div class="final-band reveal">
+      
       <span class="eyebrow center-eb" style="color:#fff;opacity:.92">Understand Before You Train</span>
       <h2 style="margin-top:12px">Every Dog Learns Differently.<br>Their Training Should Too.</h2>
       <p>Start with a 7-Day Hometails Training Assessment &mdash; 3 at-home sessions, a personalised assessment and a clear training blueprint. Decide the next step only after you have a recommendation.</p>
