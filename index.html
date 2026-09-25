@@ -321,6 +321,11 @@ html.js .pawrow.in .pw:nth-child(5){animation-delay:.52s}
 html.js .pawrow.in .pw:nth-child(6){animation-delay:.65s}
 @keyframes pawstep{0%{opacity:0;transform:translateY(9px) rotate(var(--r,0deg)) scale(.55)}55%{opacity:.55}100%{opacity:.32;transform:translateY(0) rotate(var(--r,0deg)) scale(1)}}
 
+/* paw-print cursor trail (hover) */
+.paw-cursor{position:fixed;z-index:70;pointer-events:none;color:var(--accent);transform:translate(-50%,-50%);animation:pawfade 1s ease forwards;will-change:opacity}
+.paw-cursor svg{display:block;width:20px;height:20px}
+@keyframes pawfade{0%{opacity:0}18%{opacity:.4}100%{opacity:0}}
+
 /* gently wagging paw */
 .final-paw{width:40px;height:40px;color:var(--accent);margin:0 auto 16px;display:block;transform-origin:50% 88%;animation:pawwag 2.1s ease-in-out infinite}
 .final-band:hover .final-paw{animation-duration:.9s}
@@ -674,7 +679,7 @@ html.js .pawrow.in .pw:nth-child(6){animation-delay:.65s}
       <div class="reel hasvid reveal" style="--d:1"><video src="vid2.mp4" controls playsinline preload="metadata"></video><div class="cap"><span class="rn">Reel 02</span><b>Leash Walking Progress</b><span>Structured at-home training and daily practice.</span></div></div>
       <div class="reel hasvid reveal" style="--d:2"><video src="vid3.mp4" controls playsinline preload="metadata"></video><div class="cap"><span class="rn">Reel 03</span><b>Better Everyday Behaviour</b><span>Improved cues, consistency and communication.</span></div></div>
       <div class="reel deal reveal" style="--d:3">
-        <svg class="pawmark"><use href="#i-paw"/></svg>
+        
         <span class="badge">Your dog next</span>
         <h3>Want progress like this?</h3>
         <p>Start with a free 7-day at-home assessment.</p>
@@ -768,5 +773,23 @@ html.js .pawrow.in .pw:nth-child(6){animation-delay:.65s}
   // subtle hero-photo parallax
   var hp=document.querySelector('.hero-photo img');
   if(hp&&!reduce){var tk=false;addEventListener('scroll',function(){if(tk)return;tk=true;requestAnimationFrame(function(){var y=Math.min(scrollY,600);hp.style.transform='translateY('+(y*0.06)+'px) scale(1.03)';tk=false;});},{passive:true});}
+
+  // paw-print cursor trail (on hover / move)
+  if(matchMedia('(pointer:fine)').matches && !reduce){
+    var lx=0,ly=0,side=1,minD=46;
+    addEventListener('pointermove',function(e){
+      var dx=e.clientX-lx, dy=e.clientY-ly;
+      if(dx*dx+dy*dy < minD*minD) return;
+      lx=e.clientX; ly=e.clientY; side=-side;
+      var ang=Math.atan2(dy,dx);
+      var ox=Math.cos(ang+Math.PI/2)*7*side, oy=Math.sin(ang+Math.PI/2)*7*side;
+      var p=document.createElement('div');
+      p.className='paw-cursor';
+      p.style.left=(e.clientX+ox)+'px'; p.style.top=(e.clientY+oy)+'px';
+      p.innerHTML='<svg viewBox="0 0 24 24" style="transform:rotate('+(ang*180/Math.PI+90)+'deg)"><use href="#i-paw"/></svg>';
+      document.body.appendChild(p);
+      setTimeout(function(){p.remove();}, 1000);
+    },{passive:true});
+  }
 })();
 </script>
