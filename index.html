@@ -307,13 +307,37 @@ footer .hl{color:var(--accent-lt)}
 .foot-bottom{border-top:1px solid rgba(255,255,255,.1);margin-top:40px;padding-top:24px;display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;font-size:12.5px;color:rgba(251,248,241,.42)}
 @media(max-width:720px){.foot-grid{grid-template-columns:1fr;gap:28px}}
 
+/* elegant walking paw trail */
+.pawrow{display:flex;justify-content:center;align-items:center;gap:clamp(24px,4vw,42px);padding:clamp(30px,4vw,46px) 0}
+.pawrow .pw{width:22px;height:22px;color:var(--accent);opacity:0}
+.pawrow .pw:nth-child(odd){--r:-15deg;margin-top:-13px}
+.pawrow .pw:nth-child(even){--r:15deg;margin-top:13px}
+html.js .pawrow.in .pw{animation:pawstep .6s var(--ease) forwards}
+html.js .pawrow.in .pw:nth-child(1){animation-delay:0s}
+html.js .pawrow.in .pw:nth-child(2){animation-delay:.13s}
+html.js .pawrow.in .pw:nth-child(3){animation-delay:.26s}
+html.js .pawrow.in .pw:nth-child(4){animation-delay:.39s}
+html.js .pawrow.in .pw:nth-child(5){animation-delay:.52s}
+html.js .pawrow.in .pw:nth-child(6){animation-delay:.65s}
+@keyframes pawstep{0%{opacity:0;transform:translateY(9px) rotate(var(--r,0deg)) scale(.55)}55%{opacity:.55}100%{opacity:.32;transform:translateY(0) rotate(var(--r,0deg)) scale(1)}}
+
+/* gently wagging paw */
+.final-paw{width:40px;height:40px;color:var(--accent);margin:0 auto 16px;display:block;transform-origin:50% 88%;animation:pawwag 2.1s ease-in-out infinite}
+.final-band:hover .final-paw{animation-duration:.9s}
+@keyframes pawwag{0%,100%{transform:rotate(-9deg)}50%{transform:rotate(9deg)}}
+
+/* a little more life on standalone cards */
+.reel{transition:transform .3s var(--ease),box-shadow .3s}
+.reel:hover{transform:translateY(-5px)}
+.hero-photo img{transition:transform .1s linear}
+
 /* wa float — subtle */
 .wa-wrap{position:fixed;right:22px;bottom:calc(22px + env(safe-area-inset-bottom,0px));z-index:60}
 .wa-float{width:52px;height:52px;border-radius:50%;background:var(--ink);box-shadow:var(--shadow);display:flex;align-items:center;justify-content:center;cursor:pointer;transition:transform .25s var(--ease)}
 .wa-float:hover{transform:translateY(-2px)}
 .wa-float .svg-ico{width:26px;height:26px;color:var(--paper)}
 
-@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}html.js .reveal{opacity:1!important;transform:none!important}.bar>i{width:var(--w)!important}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}html.js .reveal{opacity:1!important;transform:none!important}html.js .pawrow .pw{opacity:.32!important}.bar>i{width:var(--w)!important}}
 
 </style>
 <script>document.documentElement.classList.add('js')</script>
@@ -324,6 +348,7 @@ footer .hl{color:var(--accent-lt)}
  <symbol id="i-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
  <symbol id="i-plus" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></symbol>
  <symbol id="i-paw" viewBox="0 0 24 24" fill="currentColor"><circle cx="6" cy="10" r="2"/><circle cx="18" cy="10" r="2"/><circle cx="9.5" cy="6.5" r="2"/><circle cx="14.5" cy="6.5" r="2"/><path d="M12 12.5c-2.6 0-4.8 1.9-4.8 4.2 0 1.7 1.4 2.6 3 2.6.9 0 1.3-.3 1.8-.3s.9.3 1.8.3c1.6 0 3-.9 3-2.6 0-2.3-2.2-4.2-4.8-4.2Z"/></symbol>
+ <symbol id="i-linedog" viewBox="0 0 80 60" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path class="tail" d="M25 33C15 31 10 24 13 16"/><path d="M25 33c0-9 7-14 17-14s17 6 17 15"/><path d="M59 34c0-7 2-12 6-14 4 0 6 3 6 7s-2 7-6 7h-6"/><path d="M62 15l4 6"/><path d="M25 33c-2 6 0 13 5 13h22c5 0 7-4 7-10"/><path d="M31 46v6M52 46v6"/><circle cx="67" cy="24" r="1.3" fill="currentColor" stroke="none"/></symbol>
  <!-- pet/behaviour icons -->
  <symbol id="i-bone" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M6.5 6.5a2.2 2.2 0 1 0-1.8 3.4l7.3 4.2m4.5 3.4a2.2 2.2 0 1 0 1.8-3.4l-7.3-4.2"/><path d="M4.7 9.9a2.2 2.2 0 1 0 3.4 1.8M15.9 17.5a2.2 2.2 0 1 0 3.4-1.8"/></symbol>
  <symbol id="i-leash" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4c6 0 6 8 12 8 2.2 0 3.5-1.3 3.5-3.2C19.5 7 18.3 6 17 6"/><path d="M20 12v5a3 3 0 0 1-3 3H9"/></symbol>
@@ -426,6 +451,8 @@ footer .hl{color:var(--accent-lt)}
     </div>
   </div>
 </div>
+
+<div class="wrap"><div class="pawrow" aria-hidden="true"><svg class="svg-ico pw"><use href="#i-paw"/></svg><svg class="svg-ico pw"><use href="#i-paw"/></svg><svg class="svg-ico pw"><use href="#i-paw"/></svg><svg class="svg-ico pw"><use href="#i-paw"/></svg><svg class="svg-ico pw"><use href="#i-paw"/></svg></div></div>
 
 <!-- PROBLEMS -->
 <section class="panel">
@@ -647,7 +674,7 @@ footer .hl{color:var(--accent-lt)}
       <div class="reel hasvid reveal" style="--d:1"><video src="vid2.mp4" controls playsinline preload="metadata"></video><div class="cap"><span class="rn">Reel 02</span><b>Leash Walking Progress</b><span>Structured at-home training and daily practice.</span></div></div>
       <div class="reel hasvid reveal" style="--d:2"><video src="vid3.mp4" controls playsinline preload="metadata"></video><div class="cap"><span class="rn">Reel 03</span><b>Better Everyday Behaviour</b><span>Improved cues, consistency and communication.</span></div></div>
       <div class="reel deal reveal" style="--d:3">
-        
+        <svg class="pawmark"><use href="#i-paw"/></svg>
         <span class="badge">Your dog next</span>
         <h3>Want progress like this?</h3>
         <p>Start with a free 7-day at-home assessment.</p>
@@ -678,11 +705,13 @@ footer .hl{color:var(--accent-lt)}
   </div>
 </section>
 
+<div class="wrap"><div class="pawrow" aria-hidden="true"><svg class="svg-ico pw"><use href="#i-paw"/></svg><svg class="svg-ico pw"><use href="#i-paw"/></svg><svg class="svg-ico pw"><use href="#i-paw"/></svg><svg class="svg-ico pw"><use href="#i-paw"/></svg><svg class="svg-ico pw"><use href="#i-paw"/></svg><svg class="svg-ico pw"><use href="#i-paw"/></svg></div></div>
+
 <!-- FINAL -->
 <section>
   <div class="wrap">
     <div class="final-band reveal">
-      
+      <svg class="final-paw" aria-hidden="true"><use href="#i-paw"/></svg>
       <span class="eyebrow center-eb" style="color:#fff;opacity:.92">Understand Before You Train</span>
       <h2 style="margin-top:12px">Every Dog Learns Differently.<br>Their Training Should Too.</h2>
       <p>Start with a 7-Day Hometails Training Assessment &mdash; 3 at-home sessions, a personalised assessment and a clear training blueprint. Decide the next step only after you have a recommendation.</p>
@@ -732,8 +761,12 @@ footer .hl{color:var(--accent-lt)}
     var c=document.querySelector('.form-card');c.classList.add('done');document.getElementById('book').scrollIntoView({behavior:reduce?'auto':'smooth',block:'center'});
   });
   if('IntersectionObserver'in window){
-    var io=new IntersectionObserver(function(en){en.forEach(function(x){if(!x.isIntersecting)return;var el=x.target;if(el.classList.contains('reveal'))el.classList.add('in');if(el.classList.contains('paws'))el.classList.add('in');if(el.querySelectorAll){el.querySelectorAll('.bar>i').forEach(function(i){i.style.width=i.style.getPropertyValue('--w');});}io.unobserve(el);});},{threshold:.14,rootMargin:'0px 0px -6% 0px'});
-    document.querySelectorAll('.reveal,.paws').forEach(function(el){io.observe(el);});
+    var io=new IntersectionObserver(function(en){en.forEach(function(x){if(!x.isIntersecting)return;var el=x.target;if(el.classList.contains('reveal'))el.classList.add('in');if(el.classList.contains('pawrow'))el.classList.add('in');if(el.querySelectorAll){el.querySelectorAll('.bar>i').forEach(function(i){i.style.width=i.style.getPropertyValue('--w');});}io.unobserve(el);});},{threshold:.14,rootMargin:'0px 0px -6% 0px'});
+    document.querySelectorAll('.reveal,.pawrow').forEach(function(el){io.observe(el);});
   }else{document.querySelectorAll('.reveal').forEach(function(el){el.classList.add('in');});document.querySelectorAll('.bar>i').forEach(function(i){i.style.width=i.style.getPropertyValue('--w');});}
+
+  // subtle hero-photo parallax
+  var hp=document.querySelector('.hero-photo img');
+  if(hp&&!reduce){var tk=false;addEventListener('scroll',function(){if(tk)return;tk=true;requestAnimationFrame(function(){var y=Math.min(scrollY,600);hp.style.transform='translateY('+(y*0.06)+'px) scale(1.03)';tk=false;});},{passive:true});}
 })();
 </script>
